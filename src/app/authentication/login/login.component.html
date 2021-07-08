@@ -1,62 +1,39 @@
-<div class="auth-box on-sidebar">
-  <div class="loginform" style="left: 25%">
-    <!-- Form -->
-    <div class="row">
-      <div class="col-12">
-        <form class="form-horizontal m-t-20">
-          <h3>Login here</h3>
-          <div class="input-group mb-4">
+<div class="space-container">
+  <div class="auth-form">
+    <form nz-form [formGroup]="loginForm" (ngSubmit)="submitForm()">
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please input your username!">
+          <nz-input-group nzPrefixIcon="user">
             <input
               type="text"
-              class="form-control form-control-md"
-              placeholder="User Name"
-              aria-label="username"
-              aria-describedby="basic-addon1"
-              formControlName="username"
+              nz-input
+              formControlName="userName"
+              placeholder="Username"
             />
-          </div>
-          <!--username LOG VALIDATION-->
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
 
-          <!-- <div class="error">username required</div>
-          <div class="error">Incorrect email</div> -->
-          <!---->
-          <div class="input-group mb-4">
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please input your Password!">
+          <nz-input-group nzPrefixIcon="lock">
             <input
               type="password"
-              class="form-control form-control-md"
-              placeholder="Password"
-              aria-label="password"
-              aria-describedby="basic-addon1"
+              nz-input
               formControlName="password"
+              placeholder="Password"
             />
-          </div>
-          <!--VALIDATION-->
-
-          <!-- <div class="error">password required</div>
-          <div class="error">username or password is incorrect</div> -->
-
-          <!---->
-          <div novalidate class="form-group row">
-            <div class="col-md-6">
-              <div class="custom-control custom-checkbox">
-                <a href="javascript:void(0)" class="text-dark">
-                  Forgot password?</a
-                >
-              </div>
-            </div>
-            <div class="col-md-6 p-b-20">
-              <button class="btn btn-block btn-info float-right" type="submit">
-                Login
-                <span
-                  class="spinner-border spinner-border-sm pull-right"
-                  role="status"
-                  aria-hidden="true"
-                ></span>
-              </button>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <button
+        nz-button
+        class="login-form-button login-form-margin"
+        [nzType]="'primary'"
+      >
+        Log in
+      </button>
+      Or <a> register now! </a>
+    </form>
   </div>
 </div>

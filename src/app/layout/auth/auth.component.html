@@ -1,10 +1,12 @@
-<div class="auth-wrapper">
-  <div class="logo-left">
+<div nz-row class="auth-wrapper">
+  <div nz-col class="logo-left" nzSpan="12">
     <h3>LOGIN</h3>
     <p>
       <span>Welcome</span>
     </p>
   </div>
 
-  <router-outlet></router-outlet>
+  <div nz-col nzSpan="12">
+    <router-outlet></router-outlet>
+  </div>
 </div>

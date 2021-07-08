@@ -9,15 +9,24 @@ import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { en_US } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
-import { FormsModule } from '@angular/forms';
+
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AntdModule } from './antd/antd.module';
+import { IconModule } from '@ant-design/icons-angular';
 
 registerLocaleData(en);
 
 @NgModule({
   declarations: [AppComponent, AuthLayoutComponent],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule, BrowserAnimationsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    AntdModule,
+    IconModule,
+  ],
   providers: [AuthGuard, { provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent],
 })

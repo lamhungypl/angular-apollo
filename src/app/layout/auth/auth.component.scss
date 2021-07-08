@@ -1,39 +1,38 @@
-.logo-left {
-  position: fixed;
-  width: 50%;
-  height: 100%;
-  top: 24px;
-  left: 0%;
-  text-align: center;
-  padding: 40px;
-  background: url("../../../assets/img/login-left-bg.png") no-repeat;
-  background-size: cover;
-  opacity: 0.3;
-  h3 {
-    font-size: 32px;
-    font-weight: 500;
-    color: white;
-    position: relative;
-    top: 30%;
-    text-transform: uppercase;
-  }
-  h2 {
-    color: #008c8c;
-    position: relative;
-    top: 31%;
-    margin-right: 65%;
-  }
-  p {
-    margin-top: 10px;
-    padding-top: 10px;
+.auth-wrapper {
+  min-height: 100vh;
 
-    color: white;
-    position: relative;
-    top: 31%;
-  }
-  span {
-    color: #487e9e;
-    font-size: 30px;
-    margin-right: 1%;
+  .logo-left {
+    text-align: center;
+    padding: 40px;
+    background: url("../../../assets/img/login-left-bg.png") no-repeat;
+    background-size: cover;
+    // opacity: 0.1;
+    h3 {
+      font-size: 32px;
+      font-weight: 500;
+      color: white;
+      position: relative;
+      top: 30%;
+      text-transform: uppercase;
+    }
+    h2 {
+      color: #008c8c;
+      position: relative;
+      top: 31%;
+      margin-right: 65%;
+    }
+    p {
+      margin-top: 10px;
+      padding-top: 10px;
+
+      color: white;
+      position: relative;
+      top: 31%;
+    }
+    span {
+      color: #487e9e;
+      font-size: 30px;
+      margin-right: 1%;
+    }
   }
 }

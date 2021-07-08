@@ -9,7 +9,7 @@ const routes: Routes = [
   {
     path: 'auth',
     component: AuthLayoutComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
 
     loadChildren: () =>
       import('./authentication/authentication.module').then(
@@ -18,7 +18,7 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
     component: DashboardComponent,
   },
 ];
