@@ -1,0 +1,13 @@
+.space-container {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  .auth-form {
+    padding-top: 200px;
+    min-width: 400px;
+  }
+}
