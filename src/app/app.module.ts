@@ -14,11 +14,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AntdModule } from './antd/antd.module';
 import { IconModule } from '@ant-design/icons-angular';
+import { CommonLayoutComponent } from './layout/common/common.component';
 
 registerLocaleData(en);
 
 @NgModule({
-  declarations: [AppComponent, AuthLayoutComponent],
+  declarations: [AppComponent, AuthLayoutComponent, CommonLayoutComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

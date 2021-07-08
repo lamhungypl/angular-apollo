@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from './core/providers/auth.guard';
+// import { AuthGuard } from './core/providers/auth.guard';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthLayoutComponent } from './layout/auth/auth.component';
+import { CommonLayoutComponent } from './layout/common/common.component';
 
 const routes: Routes = [
   {
@@ -19,7 +20,9 @@ const routes: Routes = [
   {
     path: 'admin',
     // canActivate: [AuthGuard],
-    component: DashboardComponent,
+    component: CommonLayoutComponent,
+    loadChildren: () =>
+      import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
   },
 ];
 
