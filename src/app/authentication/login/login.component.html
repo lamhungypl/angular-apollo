@@ -1,1 +1,62 @@
-<p>authentication works!</p>
+<div class="auth-box on-sidebar">
+  <div class="loginform" style="left: 25%">
+    <!-- Form -->
+    <div class="row">
+      <div class="col-12">
+        <form class="form-horizontal m-t-20">
+          <h3>Login here</h3>
+          <div class="input-group mb-4">
+            <input
+              type="text"
+              class="form-control form-control-md"
+              placeholder="User Name"
+              aria-label="username"
+              aria-describedby="basic-addon1"
+              formControlName="username"
+            />
+          </div>
+          <!--username LOG VALIDATION-->
+
+          <!-- <div class="error">username required</div>
+          <div class="error">Incorrect email</div> -->
+          <!---->
+          <div class="input-group mb-4">
+            <input
+              type="password"
+              class="form-control form-control-md"
+              placeholder="Password"
+              aria-label="password"
+              aria-describedby="basic-addon1"
+              formControlName="password"
+            />
+          </div>
+          <!--VALIDATION-->
+
+          <!-- <div class="error">password required</div>
+          <div class="error">username or password is incorrect</div> -->
+
+          <!---->
+          <div novalidate class="form-group row">
+            <div class="col-md-6">
+              <div class="custom-control custom-checkbox">
+                <a href="javascript:void(0)" class="text-dark">
+                  Forgot password?</a
+                >
+              </div>
+            </div>
+            <div class="col-md-6 p-b-20">
+              <button class="btn btn-block btn-info float-right" type="submit">
+                Login
+                <span
+                  class="spinner-border spinner-border-sm pull-right"
+                  role="status"
+                  aria-hidden="true"
+                ></span>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
