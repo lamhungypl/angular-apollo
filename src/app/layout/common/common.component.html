@@ -22,7 +22,7 @@
       <li nz-submenu nzOpen nzTitle="User" nzIcon="user">
         <ul>
           <li nz-menu-item nzMatchRouter>
-            <a routerLink="/user">User Manage</a>
+            <a routerLink="/admin/user">User Manage</a>
           </li>
           <li nz-menu-item nzMatchRouter>
             <a>Workplace</a>
@@ -32,9 +32,13 @@
       <li nz-submenu nzOpen nzTitle="Post" nzIcon="form">
         <ul>
           <li nz-menu-item nzMatchRouter>
-            <a routerLink="/post">Post Manage</a>
+            <a routerLink="/admin/post">Post Manage</a>
           </li>
         </ul>
+      </li>
+      <li nz-menu-item nzTitle="Logout">
+        <i nz-icon nzType="logout"></i>
+        <span>Logout</span>
       </li>
     </ul>
   </nz-sider>

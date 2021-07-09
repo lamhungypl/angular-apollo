@@ -8,6 +8,8 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
+import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzDividerModule } from 'ng-zorro-antd/divider';
 @NgModule({
   exports: [
     NzSpaceModule,
@@ -18,6 +20,8 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
     NzIconModule,
     NzLayoutModule,
     NzMenuModule,
+    NzTableModule,
+    NzDividerModule,
   ],
 })
 export class AntdModule {}

@@ -1,13 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DashboardComponent } from './dashboard.component';
+
+import { PostComponent } from './post/post.component';
+import { UserComponent } from './user/user.component';
 
 const dashboardRoutes: Routes = [
   {
-    path: '',
-    component: DashboardComponent,
+    path: 'user',
+    component: UserComponent,
+    children: [],
   },
-  { path: '**', redirectTo: '/admin' },
+  {
+    path: 'post',
+    component: PostComponent,
+  },
+  { path: '**', redirectTo: '' },
 ];
 
 @NgModule({

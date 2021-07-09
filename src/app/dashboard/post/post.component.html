@@ -1,0 +1,25 @@
+<div>
+  <nz-table #basicTable [nzData]="dataSet">
+    <thead>
+      <tr>
+        <th>PostId</th>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of basicTable.data">
+        <td>{{ data.id }}</td>
+        <td>{{ data.name }}</td>
+
+        <td>{{ data.address }}</td>
+        <td>
+          <a>Action 一 {{ data.name }}</a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <a>Delete</a>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>
