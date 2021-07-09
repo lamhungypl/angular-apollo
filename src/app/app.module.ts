@@ -15,6 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AntdModule } from './antd/antd.module';
 import { IconModule } from '@ant-design/icons-angular';
 import { CommonLayoutComponent } from './layout/common/common.component';
+import { GraphQLModule } from './graphql.module';
 
 registerLocaleData(en);
 
@@ -27,6 +28,7 @@ registerLocaleData(en);
     BrowserAnimationsModule,
     AntdModule,
     IconModule,
+    GraphQLModule,
   ],
   providers: [AuthGuard, { provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent],

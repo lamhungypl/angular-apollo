@@ -1,32 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+
+import { Apollo } from 'apollo-angular';
+import { Observable, Subscription } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { User } from 'src/@types/schema';
+import { GET_USERS } from 'src/app/utils/schema';
 
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss'],
 })
-export class UserComponent implements OnInit {
-  constructor() {}
+export class UserComponent implements OnInit, OnDestroy {
+  users: User[] = [];
+  loading = false;
 
-  ngOnInit(): void {}
-  dataSet = [
-    {
-      key: '1',
-      name: 'John Brown',
-      age: 32,
-      address: 'New York No. 1 Lake Park',
-    },
-    {
-      key: '2',
-      name: 'Jim Green',
-      age: 42,
-      address: 'London No. 1 Lake Park',
-    },
-    {
-      key: '3',
-      name: 'Joe Black',
-      age: 32,
-      address: 'Sidney No. 1 Lake Park',
-    },
-  ];
+  private querySubscription!: Subscription;
+
+  constructor(private apollo: Apollo) {}
+
+  ngOnInit(): void {
+    this.querySubscription = this.apollo
+      .watchQuery<any>({ query: GET_USERS })
+      .valueChanges.subscribe(({ data, loading }) => {
+        this.users = data.users;
+        this.loading = loading;
+      });
+  }
+  ngOnDestroy() {
+    this.querySubscription.unsubscribe();
+  }
 }
