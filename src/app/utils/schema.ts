@@ -11,3 +11,15 @@ export const GET_USERS = gql`
     }
   }
 `;
+
+export const LOGIN = gql`
+  mutation userLogin($params: LoginInput!) {
+    login(payload: $params) {
+      token
+      user {
+        username
+        email
+      }
+    }
+  }
+`;

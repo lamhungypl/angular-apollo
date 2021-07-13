@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Apollo } from 'apollo-angular';
+import { LOGIN } from 'src/app/utils/schema';
 
 @Component({
   selector: 'app-login',
@@ -9,17 +11,41 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
-  constructor(private fb: FormBuilder, private router: Router) {}
+  submitted!: boolean;
+
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private apollo: Apollo
+  ) {}
 
   submitForm(): void {
-    this.router.navigate(['/admin']);
+    this.submitted = true;
+
+    const params = this.loginForm.value;
+
+    this.apollo
+      .mutate({
+        mutation: LOGIN,
+        variables: {
+          params: params,
+        },
+      })
+      .subscribe(
+        ({ data }) => {
+          console.log({ data });
+          this.router.navigate(['/admin']);
+        },
+        (error) => {
+          console.log({ error });
+        }
+      );
   }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
-      userName: [null, [Validators.required]],
-      password: [null, [Validators.required]],
-      remember: [true],
+      username: ['leewqweeixiao', [Validators.required]],
+      password: ['a123456', [Validators.required]],
     });
   }
 }
