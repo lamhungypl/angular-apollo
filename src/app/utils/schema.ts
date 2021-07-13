@@ -23,3 +23,13 @@ export const LOGIN = gql`
     }
   }
 `;
+
+export const REGISTER = gql`
+  mutation userRegister($payload: RegisterInput!) {
+    register(payload: $payload) {
+      username
+      email
+      created_at
+    }
+  }
+`;

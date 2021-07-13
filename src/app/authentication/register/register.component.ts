@@ -6,6 +6,10 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Apollo } from 'apollo-angular';
+import { NzMessageService } from 'ng-zorro-antd/message';
+
+import { REGISTER } from 'src/app/utils/schema';
 
 @Component({
   selector: 'app-register',
@@ -14,14 +18,22 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
-  constructor(private fb: FormBuilder, private router: Router) {}
+  passwordVisible!: boolean;
+  checkPasswordVisible!: boolean;
+
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private apollo: Apollo,
+    private message: NzMessageService
+  ) {}
 
   ngOnInit(): void {
     this.registerForm = this.fb.group({
-      username: [null, [Validators.required]],
-      password: [null, [Validators.required]],
-      checkPassword: [null, Validators.required, this.confirmationValidator],
-      nickname: [null],
+      username: ['', [Validators.required]],
+      password: ['', [Validators.required]],
+      checkPassword: ['', [Validators.required, this.confirmationValidator]],
+      email: [''],
     });
   }
 
@@ -31,7 +43,7 @@ export class RegisterComponent implements OnInit {
       this.registerForm.controls.checkPassword.updateValueAndValidity()
     );
   }
-  confirmationValidator = (control: FormControl): { [s: string]: boolean } => {
+  confirmationValidator = (control: FormControl) => {
     if (!control.value) {
       return { required: true };
     } else if (control.value !== this.registerForm.controls.password.value) {
@@ -40,13 +52,44 @@ export class RegisterComponent implements OnInit {
     return {};
   };
 
+  showSuccessRegisterMessage() {
+    this.message.create('success', 'Registration successfully');
+  }
+  showErrorRegisterMessage(message?: string) {
+    const content = message || 'Invalid Registration';
+    this.message.create('error', content);
+  }
+
   submitForm(): void {
+    const params = {
+      username: this.registerForm.value.username,
+      password: this.registerForm.value.password,
+      email: this.registerForm.value.email,
+    };
+
     for (const i in this.registerForm.controls) {
       this.registerForm.controls[i].markAsDirty();
       this.registerForm.controls[i].updateValueAndValidity();
     }
-    if (!this.registerForm.errors) {
-      this.router.navigate(['/auth/login']);
+
+    if (this.registerForm.valid) {
+      this.apollo
+        .mutate({
+          mutation: REGISTER,
+          variables: {
+            payload: params,
+          },
+        })
+        .subscribe(
+          ({ data }) => {
+            this.showSuccessRegisterMessage();
+            this.router.navigate(['/auth/login']);
+          },
+          (error) => {
+            const errorMessage = error.message;
+            this.showErrorRegisterMessage(errorMessage);
+          }
+        );
     }
   }
 }
