@@ -130,16 +130,16 @@ export class UserEditComponent implements OnInit {
   submitChangePassForm() {
     const params = {
       username: this.username,
-      newPass: this.updateForm.value.newPassword || '',
-      confirmPass: this.updateForm.value.checkPassword || '',
-      currentPass: this.updateForm.value.password || '',
+      newPass: this.changePassForm.value.newPassword || '',
+      confirmPass: this.changePassForm.value.checkPassword || '',
+      currentPass: this.changePassForm.value.password || '',
     };
 
-    for (const i in this.updateForm.controls) {
-      this.updateForm.controls[i].markAsDirty();
-      this.updateForm.controls[i].updateValueAndValidity();
+    for (const i in this.changePassForm.controls) {
+      this.changePassForm.controls[i].markAsDirty();
+      this.changePassForm.controls[i].updateValueAndValidity();
     }
-    console.log({ params, valid: this.changePassForm });
+
     if (this.changePassForm.valid) {
       this.apollo
         .mutate({

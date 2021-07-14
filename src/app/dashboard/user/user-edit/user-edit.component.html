@@ -69,7 +69,7 @@
           <nz-form-control
             [nzSm]="14"
             [nzXs]="24"
-            nzErrorTip="Please input your password!"
+            nzErrorTip="Please enter your password!"
           >
             <input
               nz-input
@@ -125,7 +125,7 @@
             />
             <ng-template #errorNewPasswordTpl let-control>
               <ng-container *ngIf="control.hasError('required')"
-                >Please enter your password!</ng-container
+                >Please enter your new password!</ng-container
               >
             </ng-template>
           </nz-form-control>

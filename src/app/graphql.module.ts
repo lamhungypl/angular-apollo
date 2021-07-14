@@ -14,7 +14,13 @@ export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
     const token = localStorage.getItem('token');
 
     if (token === null) {
-      return {};
+      // hard coded for admin@piart.com
+      return {
+        headers: {
+          Authorization:
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiaWF0IjoxNjI2Mjg1NTM2LCJleHAiOjE2MjY2NDU1MzZ9.iLDFypAUfflywfgmJNl2J0x2PYsbVDEzRlBOhHNPThc',
+        },
+      };
     } else {
       return {
         headers: {
