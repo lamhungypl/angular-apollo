@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
     const params = this.loginForm.value;
 
     this.apollo
-      .mutate({
+      .mutate<any>({
         mutation: LOGIN,
         variables: {
           params: params,
@@ -34,6 +34,9 @@ export class LoginComponent implements OnInit {
       .subscribe(
         ({ data }) => {
           console.log({ data });
+          const { token, user } = data.login;
+          window.localStorage.setItem('token', token);
+          window.localStorage.setItem('user', JSON.stringify(user));
           this.router.navigate(['/admin']);
         },
         (error) => {
