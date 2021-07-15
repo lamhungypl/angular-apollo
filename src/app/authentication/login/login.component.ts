@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Apollo } from 'apollo-angular';
+import { NzMessageService } from 'ng-zorro-antd/message';
 import { LOGIN } from 'src/app/utils/schema';
 
 @Component({
@@ -16,7 +17,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private apollo: Apollo
+    private apollo: Apollo,
+    private message: NzMessageService
   ) {}
 
   submitForm(): void {
@@ -41,6 +43,8 @@ export class LoginComponent implements OnInit {
         },
         (error) => {
           console.log({ error });
+          const errorMessage = error.message;
+          this.showErrorRegisterMessage(errorMessage);
         }
       );
   }
@@ -50,5 +54,14 @@ export class LoginComponent implements OnInit {
       username: ['leewqweeixiao', [Validators.required]],
       password: ['a123456', [Validators.required]],
     });
+  }
+
+  showSuccessRegisterMessage(contentMessage?: string) {
+    const content = contentMessage || 'Updated successfully';
+    this.message.create('success', content);
+  }
+  showErrorRegisterMessage(contentMessage?: string) {
+    const content = contentMessage || 'System Error';
+    this.message.create('error', content);
   }
 }
