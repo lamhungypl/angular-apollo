@@ -20,10 +20,19 @@ export type Query = {
   books: Array<Book>;
   book: Book;
   users: Array<User>;
+  posts: PostConnection;
 };
 
 export type QueryUsersArgs = {
   info: ArgUserInfo;
+};
+
+export type QueryPostsArgs = {
+  before?: Maybe<Scalars['String']>;
+  after?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Float']>;
+  last?: Maybe<Scalars['Float']>;
+  orderBy?: Maybe<PostOrder>;
 };
 
 export type Book = {
@@ -34,12 +43,12 @@ export type Book = {
 
 export type User = {
   __typename?: 'User';
-  user_id?: Scalars['ID'];
+  user_id: Scalars['ID'];
   username?: Maybe<Scalars['String']>;
   email?: Maybe<Scalars['String']>;
   created_at?: Maybe<Scalars['String']>;
   updated_at?: Maybe<Scalars['String']>;
-  posts?: Array<Post>;
+  posts: Array<Post>;
 };
 
 export type Post = {
@@ -58,6 +67,31 @@ export type ArgUserInfo = {
   offset?: Maybe<Scalars['Int']>;
 };
 
+export type PostConnection = {
+  __typename?: 'PostConnection';
+  pageInfo: PageInfo;
+  edges: Array<PostEdge>;
+};
+
+export type PageInfo = {
+  __typename?: 'PageInfo';
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  startCursor?: Maybe<Scalars['String']>;
+  endCursor?: Maybe<Scalars['String']>;
+};
+
+export type PostEdge = {
+  __typename?: 'PostEdge';
+  node?: Maybe<Post>;
+  /** Used in `before` and `after` args */
+  cursor?: Maybe<Scalars['String']>;
+};
+
+export type PostOrder = {
+  updated_at: Scalars['String'];
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   changePassword: User;
@@ -65,6 +99,9 @@ export type Mutation = {
   register: User;
   updateUser: User;
   deleteUser: User;
+  addPost: Post;
+  updatePost: Post;
+  deletePost: Post;
 };
 
 export type MutationChangePasswordArgs = {
@@ -86,6 +123,19 @@ export type MutationUpdateUserArgs = {
 
 export type MutationDeleteUserArgs = {
   userId: Scalars['String'];
+};
+
+export type MutationAddPostArgs = {
+  payload: AddPostInput;
+};
+
+export type MutationUpdatePostArgs = {
+  payload: UpdatePostInput;
+  postId: Scalars['String'];
+};
+
+export type MutationDeletePostArgs = {
+  postId: Scalars['String'];
 };
 
 export type ChangePasswordInput = {
@@ -114,4 +164,16 @@ export type RegisterInput = {
 
 export type UpdateInput = {
   email?: Maybe<Scalars['String']>;
+};
+
+export type AddPostInput = {
+  post_id: Scalars['ID'];
+  title?: Maybe<Scalars['String']>;
+  content?: Maybe<Scalars['String']>;
+};
+
+export type UpdatePostInput = {
+  title?: Maybe<Scalars['String']>;
+  content?: Maybe<Scalars['String']>;
+  author_id?: Maybe<Scalars['ID']>;
 };
