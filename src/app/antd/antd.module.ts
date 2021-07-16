@@ -10,8 +10,8 @@ import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
+import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 import { NzMessageModule } from 'ng-zorro-antd/message';
-
 @NgModule({
   exports: [
     NzSpaceModule,
@@ -24,6 +24,7 @@ import { NzMessageModule } from 'ng-zorro-antd/message';
     NzMenuModule,
     NzTableModule,
     NzDividerModule,
+    NzPageHeaderModule,
     NzMessageModule,
   ],
 })

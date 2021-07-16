@@ -21,7 +21,7 @@ export class UserComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.querySubscription = this.apollo
-      .watchQuery<any>({ query: GET_USERS })
+      .watchQuery<any>({ query: GET_USERS, variables: { userInfo: {} } })
       .valueChanges.subscribe(({ data, loading }) => {
         this.users = data.users;
         this.loading = loading;

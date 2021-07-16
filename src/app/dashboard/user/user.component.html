@@ -1,4 +1,7 @@
 <div>
+  <nz-page-header class="site-page-header" nzTitle="User Manager">
+  </nz-page-header>
+
   <nz-table #basicTable [nzData]="users">
     <thead>
       <tr>
@@ -14,7 +17,7 @@
         <td>{{ data.username }}</td>
         <td>{{ data.email }}</td>
         <td>
-          <a>Action</a>
+          <a routerLink="/admin/user/edit/{{ data.user_id }}">Action</a>
           <nz-divider nzType="vertical"></nz-divider>
           <a>Delete</a>
         </td>
