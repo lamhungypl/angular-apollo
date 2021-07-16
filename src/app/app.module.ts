@@ -16,11 +16,13 @@ import { AntdModule } from './antd/antd.module';
 import { IconModule } from '@ant-design/icons-angular';
 import { CommonLayoutComponent } from './layout/common/common.component';
 import { GraphQLModule } from './graphql.module';
+import { SharedModule } from './shared/shared.module';
+import { LayoutModule } from './layout/layout.module';
 
 registerLocaleData(en);
 
 @NgModule({
-  declarations: [AppComponent, AuthLayoutComponent, CommonLayoutComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -29,6 +31,8 @@ registerLocaleData(en);
     AntdModule,
     IconModule,
     GraphQLModule,
+    SharedModule,
+    LayoutModule,
   ],
   providers: [AuthGuard, { provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent],

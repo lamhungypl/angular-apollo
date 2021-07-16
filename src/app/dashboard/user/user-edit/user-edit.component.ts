@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -8,6 +8,7 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { Apollo } from 'apollo-angular';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { PERMISSIONS } from 'src/@types/authorization';
 import { CHANGE_PASSWORD, GET_USERS, UPDATE_USER } from 'src/app/utils/schema';
 
 @Component({
@@ -20,6 +21,8 @@ export class UserEditComponent implements OnInit {
   updateForm!: FormGroup;
   changePassForm!: FormGroup;
   userId!: string;
+
+  @Input() updatePermission: PERMISSIONS = 'UPDATE';
 
   constructor(
     private router: Router,
