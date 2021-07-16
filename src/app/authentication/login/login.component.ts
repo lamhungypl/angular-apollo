@@ -35,7 +35,6 @@ export class LoginComponent implements OnInit {
       })
       .subscribe(
         ({ data }) => {
-          console.log({ data });
           const { token, user } = data.login;
           window.localStorage.setItem('token', token);
           window.localStorage.setItem('user', JSON.stringify(user));
@@ -51,8 +50,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
-      username: ['leewqweeixiao', [Validators.required]],
-      password: ['a123456', [Validators.required]],
+      username: ['', [Validators.required]],
+      password: ['', [Validators.required]],
     });
   }
 
