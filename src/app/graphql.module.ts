@@ -7,20 +7,14 @@ import {
 } from '@apollo/client/core';
 import { HttpLink } from 'apollo-angular/http';
 import { setContext } from '@apollo/client/link/context';
+import { environment } from '../environments/environment';
 
-const uri = 'http://localhost:4000/graphql'; // <-- add the URL of the GraphQL server here
 export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
   const auth = setContext((operation, context) => {
     const token = localStorage.getItem('token');
 
     if (token === null) {
-      // hard coded for admin@piart.com
-      return {
-        headers: {
-          Authorization:
-            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiaWF0IjoxNjI2Mjg1NTM2LCJleHAiOjE2MjY2NDU1MzZ9.iLDFypAUfflywfgmJNl2J0x2PYsbVDEzRlBOhHNPThc',
-        },
-      };
+      return {};
     } else {
       return {
         headers: {
@@ -31,7 +25,7 @@ export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
   });
 
   return {
-    link: ApolloLink.from([auth, httpLink.create({ uri })]),
+    link: ApolloLink.from([auth, httpLink.create({ uri: environment.apiUrl })]),
     cache: new InMemoryCache(),
   };
 }

@@ -37,8 +37,10 @@
         </ul>
       </li>
       <li nz-menu-item nzTitle="Logout">
-        <i nz-icon nzType="logout"></i>
-        <span>Logout</span>
+        <div (click)="showModal()">
+          <i nz-icon nzType="logout"></i>
+          <span>Logout</span>
+        </div>
       </li>
     </ul>
   </nz-sider>
