@@ -65,6 +65,21 @@ export class UserEditComponent implements OnInit {
 
             account: userInfoData.account || '',
           });
+          this.updatePermission =
+            userInfoData.username ===
+            JSON.parse(localStorage.getItem('user') || '{}')?.username
+              ? 'UPDATE'
+              : 'VIEW';
+
+          if (this.updatePermission !== 'UPDATE') {
+            for (const i in this.updateForm.controls) {
+              this.updateForm.controls[i].disable();
+            }
+
+            for (const i in this.changePassForm.controls) {
+              this.changePassForm.controls[i].disable();
+            }
+          }
         },
         (error) => {
           console.log({ error });
