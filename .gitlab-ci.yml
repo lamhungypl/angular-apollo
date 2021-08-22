@@ -1,0 +1,15 @@
+image: node:15.12-alpine3.13
+pages:
+  cache:
+    paths:
+      - node_modules/
+  script:
+    - npm install -g @angular/cli@12.1.1
+    - npm install
+    - npm run build
+  artifacts:
+    paths:
+      - public
+  only:
+    - master
+    - pages
